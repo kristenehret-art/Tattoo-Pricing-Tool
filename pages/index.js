@@ -172,38 +172,41 @@ export default function Home() {
               <Input label="Weeks Per Month" value={weeksPerMonth} setValue={setWeeksPerMonth} />
               <Input label="Booking Rate (0-1)" value={bookingRate} setValue={setBookingRate} />
             </div>
+<div style={styles.card}>
+  <h2>Your Results</h2>
 
-            <div style={styles.card}>
-              <h2>Your Results</h2>
+  <p>Your hourly rate: <strong>{hourlyRate}</strong></p>
 
-<p>Your hourly rate: <strong>${hourlyRate}</strong></p>
+  <p>
+    After shop split, taxes, and expenses:
+    <br />
+    <strong>${results.actualHourly.toFixed(2)}/hr</strong>
+  </p>
 
-<p>
-  After shop split, taxes, and expenses:<br />
-  <strong>You actually earn: ${results.actualHourly.toFixed(2)}/hr</strong>
-</p>
+  <p>
+    Annual income (real): ${results.yearlyIncome.toFixed(0)}
+  </p>
 
-<p>
-  Annual income (real): ${results.yearlyIncome.toFixed(0)}
-</p>
+  <hr style={{ margin: "15px 0", borderColor: "#333" }} />
 
-<hr style={{ margin: "15px 0", borderColor: "#333" }} />
+  <p>
+    To hit your goal:
+    <br />
+    <strong>${results.recommendedHourly.toFixed(0)}/hr</strong>
+  </p>
 
-<p>
-  To hit your goal:<br />
-  <strong>You should charge: ${results.recommendedHourly.toFixed(0)}/hr</strong>
-</p>
+  {results.underpricingAmount > 0 && (
+    <div style={styles.warningBig}>
+      ⚠️ You are undercharging by ${results.underpricingAmount.toFixed(0)}/hr
+    </div>
+  )}
 
-{results.underpricingAmount > 0 && (
-  <div style={styles.warningBig}>
-    ⚠️ You are undercharging by ${results.underpricingAmount.toFixed(0)}/hr
+  <div style={{ marginTop: "20px", fontSize: "20px" }}>
+    <span>🎯 Your Tattoo Business Score: </span>
+    <strong>{results.score}/100</strong>
   </div>
-)}
-
-<div style={{ marginTop: "20px", fontSize: "20px" }}>
-  <span>🎯 Your Tattoo Business Score: </span>
-  <strong>{results.score}/100</strong>
 </div>
+         
         )}
       </div>
     </div>
